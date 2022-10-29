@@ -8,26 +8,27 @@ const BlogItemDetails = () => {
   const [blogData, setBlogData] = useState([]);
 
   useEffect(() => {
-    return async () => {
-      const response = await fetch(`https://apis.ccbp.in/blogs/${id}`);
-      //console.log(response);
-      const data = await response.json();
-      //console.log(data);
-
-      const updatedData = {
-        id: data.id,
-        title: data.title,
-        imageUrl: data.image_url,
-        avatarUrl: data.avatar_url,
-        author: data.author,
-        topic: data.topic,
-        content: data.content,
-      };
-      console.log(updatedData);
-      setBlogData(updatedData);
-    };
+    blogitemfetchdata();
   }, [id]);
 
+  const blogitemfetchdata = async () => {
+    const response = await fetch(`https://apis.ccbp.in/blogs/${id}`);
+    //console.log(response);
+    const data = await response.json();
+    //console.log(data);
+
+    const updatedblogitemData = {
+      id: data.id,
+      title: data.title,
+      imageUrl: data.image_url,
+      avatarUrl: data.avatar_url,
+      author: data.author,
+      topic: data.topic,
+      content: data.content,
+    };
+    console.log(updatedblogitemData);
+    setBlogData(updatedblogitemData);
+  };
   const renderBlogItemDetails = () => {
     const { title, imageUrl, content, avatarUrl, author } = blogData;
     return (
